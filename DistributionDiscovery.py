@@ -5,6 +5,10 @@ import datetime
 import pygame
 
 #Trying to commit a change
+pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.load("KissMeBabe.mp3")
+pygame.mixer.music.play()
 
 class DataEntryApp(BoxLayout):
     numSamples = NumericProperty(0)
