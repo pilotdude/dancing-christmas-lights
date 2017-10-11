@@ -1,45 +1,29 @@
-from kivy.app import App
-from kivy.properties import NumericProperty
-from kivy.uix.boxlayout import BoxLayout
-import datetime
+import xml.etree.ElementTree as ET
 import pygame
 
-#Trying to commit a change
+#Midi to xml converter: http://flashmusicgames.com/midi/mid2xml.php
+
+song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
+'''
+#Plays the song
 pygame.init()
-pygame.mixer.init()
-pygame.mixer.music.load("KissMeBabe.mp3")
+pygame.mixer.music.load(song+".mid")
 pygame.mixer.music.play()
+'''
 
-class DataEntryApp(BoxLayout):
-    numSamples = NumericProperty(0)
-    #initializationTime = datetime.datetime()
-    #sampleTimes=[initializationTime.now()]
+tree = ET.parse(song+'.xml')
+root = tree.getroot()
+#text is between the wrapppers
+#Attrib is what it is equal too
+#tag is what it's called
+for child in root:
+    if child.tag == "TicksPerBeat":
+        tpb = child.text #ticks per beat
+    if child.tag == "Track":
+        for event in child:
 
-    def newSample(self,*args):
-        self.numSamples +=1
-        #self.sampleTimes.append(datetime.timedelta(self.initializationTime,datetime.now()))
-
-        #print(self.sampleTimes)
-        return
-    def doStuff(self):
-        print("doing things")
-        pygame.init()
-        pygame.mixer.init()
-        pygame.mixer.music.load("KissMeBabe.mp3")
-        pygame.mixer.music.play()
-
-class InitializationApp(App):
-    def build(self):
-        return DataEntryApp()
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    print("running")
-    InitializationApp().run()
+            print(event[0].text, event[1].attrib)
+print(tpb)
+#shouldn't be needed in final code just here while code is running too fast
+#while pygame.mixer.music.get_busy():
+#    pygame.time.wait(1000)
