@@ -1,0 +1,14 @@
+<DataEntryApp>:
+    orientation:"vertical"
+    Label:
+        text: "HelloWorld"#root.numSamples
+        color: [0,0,1,1]
+        size_hint_y:None
+    Button:
+        text: "Sample"
+        size_hint_y: None
+        on_press: root.newSample()
+    Button:
+        text:"Do something"
+        size_hint_y:None
+        on_press: root.doStuff()
