@@ -36,7 +36,7 @@ def control(color,controllist):
 if __name__ =='__main__':
     jobs =[]
     for each in controllers:
-        p= multiprocessing.Process(target = control, args=each[0],each[1])
+        p= multiprocessing.Process(target = control, args=(each[0],each[1]))
         jobs.append(p)
         p.start()
 
