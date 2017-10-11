@@ -4,6 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 import datetime
 import pygame
 
+#Trying to commit a change
 
 class DataEntryApp(BoxLayout):
     numSamples = NumericProperty(0)
