@@ -1,13 +1,15 @@
 import RPi.GPIO as GPIO
 import time
 import multiprocessing
+import pygame
 import xml.etree.ElementTree as ET
 
 #Midi to xml converter: http://flashmusicgames.com/midi/mid2xml.php
-
-tree = ET.parse('StarWarsTheme.xml')
-root = tree.getroot()
-
+song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
+#Plays the song
+pygame.init()
+pygame.mixer.music.load(song+".mid")
+pygame.mixer.music.play()
 
 
 '''
