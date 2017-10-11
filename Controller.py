@@ -60,4 +60,5 @@ if __name__ =='__main__':
         p.start()
 
 
-
+while pygame.mixer.music.get_busy():
+    pygame.time.wait(1000)
