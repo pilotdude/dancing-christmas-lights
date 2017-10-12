@@ -5,11 +5,12 @@ import pygame
 import xml.etree.ElementTree as ET
 
 #Midi to xml converter: http://flashmusicgames.com/midi/mid2xml.php
-song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
-#Plays the song
-pygame.init()
-pygame.mixer.music.load(song+".mid")
-pygame.mixer.music.play()
+def playMusic():
+    song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
+    #Plays the song
+    pygame.init()
+    pygame.mixer.music.load(song+".mid")
+    pygame.mixer.music.play()
 
 
 '''
@@ -55,9 +56,11 @@ def control(color,controllist):
 if __name__ =='__main__':
     jobs =[]
     for each in controllers:
-        p= multiprocessing.Process(target = control, args=(each[0],each[1]))
-        jobs.append(p)
-        p.start()
+        p1= multiprocessing.Process(target = control, args=(each[0],each[1]))
+        jobs.append(p1)
+        p1.start()
+    p2 = multiprocessing.Process(target = playMusic)
+    p2.start()
 
 
 while pygame.mixer.music.get_busy():
