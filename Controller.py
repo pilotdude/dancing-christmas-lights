@@ -9,7 +9,7 @@ def playMusic():
     song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
     #Plays the song
     pygame.init()
-    pygame.mixer.music.load(song+".mid")
+    pygame.mixer.music.load("KissMeBabe.mp3")
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
         pygame.time.wait(1000)
