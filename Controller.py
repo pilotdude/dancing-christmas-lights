@@ -11,7 +11,8 @@ def playMusic():
     pygame.init()
     pygame.mixer.music.load(song+".mid")
     pygame.mixer.music.play()
-
+    while pygame.mixer.music.get_busy():
+        pygame.time.wait(1000)
 
 '''
 print("LED on")
@@ -63,5 +64,4 @@ if __name__ =='__main__':
     p2.start()
 
 
-while pygame.mixer.music.get_busy():
-    pygame.time.wait(1000)
+
