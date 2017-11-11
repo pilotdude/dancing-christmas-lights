@@ -17,12 +17,14 @@ class light:
     def chanOn(self):
         '''Turns the lights on this channel to on'''
         GPIO.output(self.pinNum, GPIO.HIGH)
+        #print(time.gmtime())
         self.isOn = True
         return
 
     def chanOff(self):
         '''Turns the lights on this channel off'''
         GPIO.output(self.pinNum, GPIO.LOW)
+        #print(time.gmtime())
         self.isOn = False
         return
 

@@ -43,7 +43,6 @@ def readSong(songFile):
     for each in sections:
         notes = re.findall("\"note\":([0-9]+).+?(?<=position\":)([0-9.]+),\"length\":([0-9.]+)",each[1])
         for thing in notes:
-            print(thing)
             note = int(thing[0])-12 #to bring things down an octave
             pos = float(thing[1])+float(each[0]) #get absolute position instead of realative position
             len = float(thing[2])
@@ -56,18 +55,23 @@ def readSong(songFile):
 
     return playCommands
 
-readSong("test1.sng")
-
 def danceLights(playCommands,mapDict):
     '''Accepts a list of tuples with position, note and duration and a dictionary to map notes to
     channels, turns on pins at specified position for given duration'''
     i = 0
-    while i<=len(playCommands):
+    while i<len(playCommands):
         channel = mapDict[str(playCommands[i][1])]
         duration = playCommands[i][2]
-        Light.light(channel,duration)
+        Light.light(channel,duration/44100)
+        if i>0 and i+1<len(playCommands):
+            amount = playCommands[i+1][0]-playCommands[i][0]
+            if amount >0:
+                time.sleep(amount/44100)
+            else:
+                pass
+        else:
+            pass
         i+=1
-
 
 def playMusic():
     song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
@@ -75,9 +79,12 @@ def playMusic():
     pygame.init()
     pygame.mixer.music.load("KissMeBabe.mp3")
     pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.wait(1000)
-#playMusic()
+    #while pygame.mixer.music.get_busy():
+        #pygame.time.wait(1000)
+
+a = readSong("test1.sng")
+playMusic()
+danceLights(a, mapDict)
 
 
 
