@@ -7,6 +7,8 @@ import Channels
 import Light
 import re
 
+# https://chrome.soundation.com/
+
 a=Channels.Channel()
 a.chanOn()
 a.chanOff()
@@ -49,7 +51,7 @@ def readSong(songFile):
 
             #changing things to put position first, then note, then length
             playCommands.append((pos,note,len))
-
+            # (1, 2, 5),(3,1,3),(
     #sorting by order of occurance
     playCommands.sort()
 
@@ -60,6 +62,8 @@ def danceLights(playCommands,mapDict):
     channels, turns on pins at specified position for given duration'''
     i = 0
     while i<len(playCommands):
+        #print(playCommands[i])
+        #print(playCommands[i+1])
         channel = mapDict[str(playCommands[i][1])]
         duration = playCommands[i][2]
         Light.light(channel,duration/44100)
@@ -76,15 +80,16 @@ def danceLights(playCommands,mapDict):
 def playMusic():
     song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
     #Plays the song
+    #time.sleep(.25)
     pygame.init()
     pygame.mixer.music.load("KissMeBabe.mp3")
     pygame.mixer.music.play()
     #while pygame.mixer.music.get_busy():
         #pygame.time.wait(1000)
 
-a = readSong("test1.sng")
+songlist = readSong("test1.sng")
 playMusic()
-danceLights(a, mapDict)
+danceLights(songlist, mapDict)
 
 
 
