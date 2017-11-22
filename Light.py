@@ -1,6 +1,7 @@
 # Class for each channel
 import RPi.GPIO as GPIO
 import time
+import threading
 
 class light:
     def __init__(self,channel,duration):
@@ -9,16 +10,15 @@ class light:
         return
 
     def chanOnFor(self,duration):
+        print("Channel:"+str(self.pinNum)+"duration:"+str(duration))
         self.chanOn()
-        time.sleep(duration)
-        self.chanOff()
+        t = threading.Timer(duration, self.chanOff)
+        t.start()  # after 30 seconds, unban will be run
         return
 
     def chanOn(self):
         '''Turns the lights on this channel to on'''
         GPIO.output(self.pinNum, GPIO.HIGH)
-        #print(time.gmtime())
-        self.isOn = True
         return
 
     def chanOff(self):

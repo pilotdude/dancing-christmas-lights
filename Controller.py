@@ -7,9 +7,8 @@ import Channels
 import Light
 import re
 
-a=Channels.Channel()
-a.chanOn()
-a.chanOff()
+# https://chrome.soundation.com/
+
 
 #key = channel id, value = BCMGPIO port
 mapDict = {'0':4,'1':17,'2':27,'3':22,'4':5,'5':6,'6':13,'7':19,'8':26,'9':21,'10':20,'11':16,'12':12,'13':25,'14':24,
@@ -49,7 +48,7 @@ def readSong(songFile):
 
             #changing things to put position first, then note, then length
             playCommands.append((pos,note,len))
-
+            # (1, 2, 5),(3,1,3),(
     #sorting by order of occurance
     playCommands.sort()
 
@@ -59,7 +58,10 @@ def danceLights(playCommands,mapDict):
     '''Accepts a list of tuples with position, note and duration and a dictionary to map notes to
     channels, turns on pins at specified position for given duration'''
     i = 0
+    print('Dancing the lights!!!!')
     while i<len(playCommands):
+        #print(playCommands[i])
+        #print(playCommands[i+1])
         channel = mapDict[str(playCommands[i][1])]
         duration = playCommands[i][2]
         Light.light(channel,duration/44100)
@@ -73,19 +75,46 @@ def danceLights(playCommands,mapDict):
             pass
         i+=1
 
-def playMusic():
-    song = 'StarWarsTheme' #set this equal to the name of the song you want to capture without the file extension
+def playMusic(song):
+    '''Accepts the file name of a song as a string and then plays that song.'''
     #Plays the song
-    pygame.init()
-    pygame.mixer.music.load("KissMeBabe.mp3")
+    #time.sleep(.25)
+    pygame.mixer.music.load(song)
     pygame.mixer.music.play()
     #while pygame.mixer.music.get_busy():
         #pygame.time.wait(1000)
 
-a = readSong("test1.sng")
-playMusic()
-danceLights(a, mapDict)
+pygame.init()
+songlist = readSong("test1.sng")
+playMusic("KissMeBabe.mp3")
+danceLights(songlist, mapDict)
 
+
+
+
+# screen = pygame.display.set_mode((200, 200))
+#
+# # our variable we want to change
+# flag = False
+# # give our event a name
+# lightsOff = pygame.USEREVENT + 1
+#
+# while True:
+#     for e in pygame.event.get():
+#         if e.type == pygame.QUIT: run = False
+#         if e.type == pygame.KEYDOWN:
+#             # if any key is pressed, 'flag' is set to true
+#             flag = True
+#             # queue a RESETEVENT to fire in 1000ms
+#             pygame.time.set_timer(RESETEVENT, 1000)
+#         if e.type == RESETEVENT:
+#             # if the event is caught here 1000ms later,
+#             # set 'flag' to False
+#             flag = False
+#             # and don't post another event
+#             pygame.time.set_timer(RESETEVENT, 0)
+#     screen.fill(pygame.color.Color('RED' if flag else 'BLACK'))
+#     pygame.display.flip()
 
 
 #Command Data
