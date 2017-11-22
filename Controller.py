@@ -86,9 +86,11 @@ def playMusic(song):
 
 pygame.init()
 songlist = readSong("test1.sng")
-playMusic("KissMeBabe.mp3")
-danceLights(songlist, mapDict)
 
+danceLights(songlist, mapDict)
+#Delay to help fix timing issue
+time.sleep(.03)
+playMusic("KissMeBabe.mp3")
 
 
 
