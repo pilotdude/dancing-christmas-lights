@@ -5,10 +5,11 @@ mapDict = {'0':4,'1':17,'2':27,'3':22,'4':5,'5':6,'6':13,'7':19,'8':26,'9':21,'1
 
 i=0
 GPIO.setmode(GPIO.BCM)
-
+print(mapDict[str(0)])
 while i<= len(mapDict):
 
-    GPIO.setup(mapDict[i], GPIO.OUT)
-    GPIO.output(mapDict[i], GPIO.HIGH)
+    GPIO.setup(mapDict[str(i)], GPIO.OUT)
+    GPIO.output(mapDict[str(i)], GPIO.HIGH)
     i+=1
     time.sleep(.5)
+    GPIO.output(mapDict[str(i)], GPIO.LOW)
