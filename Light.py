@@ -5,6 +5,8 @@ import threading
 
 class light:
     def __init__(self,channel,duration):
+        GPIO.setmode(GPIO.BCM) 
+        GPIO.setup(channel, GPIO.OUT)
         self.pinNum = channel
         self.chanOnFor(duration)
         return
