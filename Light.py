@@ -10,7 +10,7 @@ class light:
         return
 
     def chanOnFor(self,duration):
-        print("Channel:"+str(self.pinNum)+"duration:"+str(duration))
+        #print("Channel:"+str(self.pinNum)+"duration:"+str(duration))
         self.chanOn()
         t = threading.Timer(duration, self.chanOff)
         t.start()  # after 30 seconds, unban will be run
