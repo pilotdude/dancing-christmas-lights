@@ -61,7 +61,7 @@ def danceLights(playCommands,mapDict, song):
     i = 0
     playMusic(song)
     print("Playing the song")
-    time.sleep(.6)
+    time.sleep(.65)
     print('Dancing the lights!!!!')
     while i<len(playCommands):
         #print(playCommands[i])
