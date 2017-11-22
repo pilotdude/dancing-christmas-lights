@@ -10,6 +10,7 @@ while i<= len(mapDict):
 
     GPIO.setup(mapDict[str(i)], GPIO.OUT)
     GPIO.output(mapDict[str(i)], GPIO.HIGH)
-    i+=1
+
     time.sleep(.5)
     GPIO.output(mapDict[str(i)], GPIO.LOW)
+    i+=1
