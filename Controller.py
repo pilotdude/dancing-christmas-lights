@@ -61,6 +61,7 @@ def danceLights(playCommands,mapDict, song):
     i = 0
     playMusic(song)
     print("Playing the song")
+    time.sleep(.5)
     print('Dancing the lights!!!!')
     while i<len(playCommands):
         #print(playCommands[i])
@@ -95,74 +96,3 @@ danceLights(songlist, mapDict, "KissMeBabe.mp3")
 #t = threading.Timer(.03, playMusic("KissMeBabe.mp3"))
 #t.start()
 #playMusic("KissMeBabe.mp3")
-
-
-
-# screen = pygame.display.set_mode((200, 200))
-#
-# # our variable we want to change
-# flag = False
-# # give our event a name
-# lightsOff = pygame.USEREVENT + 1
-#
-# while True:
-#     for e in pygame.event.get():
-#         if e.type == pygame.QUIT: run = False
-#         if e.type == pygame.KEYDOWN:
-#             # if any key is pressed, 'flag' is set to true
-#             flag = True
-#             # queue a RESETEVENT to fire in 1000ms
-#             pygame.time.set_timer(RESETEVENT, 1000)
-#         if e.type == RESETEVENT:
-#             # if the event is caught here 1000ms later,
-#             # set 'flag' to False
-#             flag = False
-#             # and don't post another event
-#             pygame.time.set_timer(RESETEVENT, 0)
-#     screen.fill(pygame.color.Color('RED' if flag else 'BLACK'))
-#     pygame.display.flip()
-
-
-#Command Data
-leds = {'red1':18,'yellow1':23,'green1':24,'blue1':25,'red2':16,'green2':20, 'yellow2':12}
-red1list = [('on',1),('off',2),('on',1),('off',3),('on',3)]
-red2list = [('on',.5),('off',1),('on',2),('off',1),('on',3),('off',2),('on',.5)]
-blue1list = [('off',1),('on',2),('off',1),('on',3),('off',3)]
-green1list = [('on',2),('off',2),('on',2),('off',2),('on',2)]
-green2list = [('on',.5),('off',1.5),('on',1),('off',1),('on',.5),('off',1.5),('on',1),('off',1),('on',1.5),('off',.5)]
-yellow1list = [('on',1),('off',1),('on',1),('off',1),('on',1),('off',1),('on',1),('off',1),('on',1),('off',1)]
-yellow2list = [('on',1),('off',1),('on',1),('off',1),('on',.5),('off',1.5),('on',1),('off',1),('on',1.5),('off',.5)]
-controllers = [('red1',red1list), ('blue1',blue1list), ('green1',green1list), ('yellow1',yellow1list),
-               ('red2',red2list),('green2',green2list),('yellow2',yellow2list)]
-
-#GPIO SETUP
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setwarnings(False)
-# for each in leds.values():
-#     GPIO.setup(each, GPIO.OUT)
-#
-# def lightOn(pin, delay):
-#     '''Turns on a light at a given pin for a given interval'''
-#     GPIO.output(pin,GPIO.HIGH)
-#     time.sleep(delay)
-#     GPIO.output(pin,GPIO.LOW)
-#     return
-#
-# def control(color,controllist):
-#     for each in controllist:
-#         if each[0] == 'on':
-#             lightOn(leds[color],each[1])
-#         else:
-#             time.sleep(each[1])
-#
-# if __name__ =='__main__':
-#     jobs =[]
-#     for each in controllers:
-#         p1= multiprocessing.Process(target = control, args=(each[0],each[1]))
-#         jobs.append(p1)
-#         p1.start()
-#     p2 = multiprocessing.Process(target = playMusic)
-#     p2.start()
-
-
-
