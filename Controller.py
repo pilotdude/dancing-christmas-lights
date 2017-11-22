@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import Channels
 import Light
 import re
+import threading
 
 # https://chrome.soundation.com/
 
@@ -54,10 +55,12 @@ def readSong(songFile):
 
     return playCommands
 
-def danceLights(playCommands,mapDict):
+def danceLights(playCommands,mapDict, song):
     '''Accepts a list of tuples with position, note and duration and a dictionary to map notes to
     channels, turns on pins at specified position for given duration'''
     i = 0
+    playMusic(song)
+    print("Playing the song")
     print('Dancing the lights!!!!')
     while i<len(playCommands):
         #print(playCommands[i])
@@ -87,10 +90,11 @@ def playMusic(song):
 pygame.init()
 songlist = readSong("test1.sng")
 
-danceLights(songlist, mapDict)
+danceLights(songlist, mapDict, "KissMeBabe.mp3")
 #Delay to help fix timing issue
-time.sleep(.03)
-playMusic("KissMeBabe.mp3")
+#t = threading.Timer(.03, playMusic("KissMeBabe.mp3"))
+#t.start()
+#playMusic("KissMeBabe.mp3")
 
 
 
