@@ -15,9 +15,9 @@ class Channel:
         else:
             return str(self.pinNum)+" is off"
 
-    def chanOnFor(self,time):
+    def chanOnFor(self,secs):
         self.chanOn()
-        time.sleep(time)
+        time.sleep(secs)
         self.chanOff()
         return
 
