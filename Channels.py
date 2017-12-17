@@ -35,6 +35,7 @@ class Channel:
 
     def setPin(self, pin):
         self.pinNum = pin
+        GPIO.setup(pin, GPIO.OUT)
         return
 
 
