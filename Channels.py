@@ -6,6 +6,7 @@ class Channel:
     def __init__(self):
         self.pinNum = 0
         self.isOn = False
+        GPIO.setmode(GPIO.BCM)
         return
 
     def __str__(self):
