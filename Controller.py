@@ -16,17 +16,19 @@ mapDict = {'0':4,'1':17,'2':27,'3':22,'4':5,'5':6,'6':13,'7':19,'8':26,'9':21,'1
           '15':23,'16':18}
 
 def test():
-    numChannels = 7
-    activePins=[12,23,24,25,16,20]
+    numChannels = 8
+    activePins=['0','1','2','3','4','5','6','7']
 
     #Create a list of each channel
-    chanList = [Channels.Channel() for i in range(numChannels)]
-    i=0
-    while i < numChannels:
-        chanList[i].setPin(activePins[i])
-        i+=1
+    for each in activePins:
+        a=Channels.Channel()
+        a.setPin(mapDict[each])
+        a.chanOnFor(1)
+    return
+test()
 
-    return chanList
+
+
 
 
 def readSong(songFile):
@@ -87,7 +89,7 @@ def playMusic(song):
     pygame.mixer.music.play()
     #while pygame.mixer.music.get_busy():
         #pygame.time.wait(1000)
-
+'''
 pygame.init()
 songlist = readSong("test1.sng")
 
@@ -96,3 +98,4 @@ danceLights(songlist, mapDict, "KissMeBabe.mp3")
 #t = threading.Timer(.03, playMusic("KissMeBabe.mp3"))
 #t.start()
 #playMusic("KissMeBabe.mp3")
+'''
