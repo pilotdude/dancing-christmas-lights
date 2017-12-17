@@ -1,4 +1,6 @@
 import time
+import Channels
+
 
 def test():
     numChannels = 8
