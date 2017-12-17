@@ -3,7 +3,7 @@ import time
 import multiprocessing
 import pygame
 import xml.etree.ElementTree as ET
-import Channels
+
 import Light
 import re
 import threading
@@ -14,21 +14,6 @@ import threading
 #key = channel id, value = BCMGPIO port
 mapDict = {'0':4,'1':17,'2':27,'3':22,'4':5,'5':6,'6':13,'7':19,'8':26,'9':21,'10':20,'11':16,'12':12,'13':25,'14':24,
           '15':23,'16':18}
-
-def test():
-    numChannels = 8
-    activePins=['0','1','2','3','4','5','6','7']
-
-    #Create a list of each channel
-    for each in activePins:
-        a=Channels.Channel()
-        a.setPin(mapDict[each])
-        a.chanOnFor(1)
-    return
-test()
-
-
-
 
 
 def readSong(songFile):
@@ -89,7 +74,7 @@ def playMusic(song):
     pygame.mixer.music.play()
     #while pygame.mixer.music.get_busy():
         #pygame.time.wait(1000)
-'''
+
 pygame.init()
 songlist = readSong("test1.sng")
 
@@ -98,4 +83,3 @@ danceLights(songlist, mapDict, "KissMeBabe.mp3")
 #t = threading.Timer(.03, playMusic("KissMeBabe.mp3"))
 #t.start()
 #playMusic("KissMeBabe.mp3")
-'''

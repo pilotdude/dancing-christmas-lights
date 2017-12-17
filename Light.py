@@ -5,10 +5,17 @@ import threading
 
 class light:
     def __init__(self,channel,duration):
+        '''if the duration is negative the lights will turn off if the duration is positive they lights will turn on for
+        the duration in seconds If the duration is 0 they will turn on indefinately.'''
         GPIO.setmode(GPIO.BCM) 
         GPIO.setup(channel, GPIO.OUT)
         self.pinNum = channel
-        self.chanOnFor(duration)
+        if duration > 0:
+            self.chanOnFor(duration)
+        if duration < 0:
+            self.chanOff()
+        else:
+            self.chanOn()
         return
 
     def chanOnFor(self,duration):
