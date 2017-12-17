@@ -25,7 +25,7 @@ def test():
         a.setPin(mapDict[each])
         a.chanOnFor(1)
     return
-#test()
+test()
 
 
 
@@ -89,7 +89,7 @@ def playMusic(song):
     pygame.mixer.music.play()
     #while pygame.mixer.music.get_busy():
         #pygame.time.wait(1000)
-
+'''
 pygame.init()
 songlist = readSong("test1.sng")
 
@@ -98,3 +98,4 @@ danceLights(songlist, mapDict, "KissMeBabe.mp3")
 #t = threading.Timer(.03, playMusic("KissMeBabe.mp3"))
 #t.start()
 #playMusic("KissMeBabe.mp3")
+'''
